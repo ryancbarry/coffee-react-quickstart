@@ -10,10 +10,12 @@ WORKDIR crq
 RUN npm install 
 RUN bundle install 
 RUN npm install -g gulp cult
+RUN ls
 #RUN cp -nR coffee-react-quickstart/src/* mycode
 #RUN ln -s mycode coffee-react-quickstart/src
 #RUN cult build
 #RUN rm -rf src
 #ENTRYPOINT ln -s $CULT_DIR/src coffee-react-quickstart/src && cd coffee-react-quickstart && cult build && cult watch
-COPY mounted.sh mounted.sh
-ENTRYPOINT bash mounted.sh 
+ADD mounted.sh /mnt.sh
+RUN chmod 755 /mnt.sh
+CMD bash /mnt.sh 
