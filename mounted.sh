@@ -3,22 +3,13 @@
 /bin/echo $CULT_DIR
 if [ -d $CULT_DIR ]; 
 then
-    /bin/echo "doing the rm"
-    cd /crq
-    rm -rf src;
-    rm -rf assets;
-    rm -rf public;
-    ln -s $CULT_DIR/src src;
-    ln -s $CULT_DIR/assets assets;
-    mkdir public
-    ls src
-    cult build
-    ls -lsrt /crq/src/*
+    cd $CULT_DIR
+    git clone https://github.com/rseymour/coffee-react-quickstart  ./crq
+    cd crq
+    npm install 
+    bundle install 
+    npm install -g gulp cult
     cult watch
 else
-    echo "oh crap"
-    cult build;
-    cult watch;
+    echo "mount is messed up"
 fi
-echo "peace out"
-
