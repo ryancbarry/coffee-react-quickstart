@@ -4,7 +4,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    "webpack-dev-server/client?http://0.0.0.0:" + process.env.SOCKETIOPORT,
+    "webpack-dev-server/client?http://0.0.0.0:8080",
     'webpack/hot/dev-server',
     './src/scripts/router'
   ],
