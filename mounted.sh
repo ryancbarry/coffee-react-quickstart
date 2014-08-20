@@ -4,11 +4,16 @@
 if [ -d $CULT_DIR ]; 
 then
     cd $CULT_DIR
-    git clone https://github.com/rseymour/coffee-react-quickstart  ./crq
-    cd crq
-    npm install 
-    bundle install 
-    npm install -g gulp cult
+    if [ ! -d crq ]
+    then
+        git clone https://github.com/rseymour/coffee-react-quickstart  ./crq
+        cd crq
+        npm install 
+        bundle install 
+        npm install -g gulp cult
+    else
+        cd crq
+    fi
     cult watch
 else
     echo "mount is messed up"
