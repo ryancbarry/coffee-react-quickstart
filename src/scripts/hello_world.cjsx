@@ -8,7 +8,7 @@ module.exports = React.createClass
 
   render: ->
     <div>
-      <h1>Hello world!</h1>
+      <h1>Hello world!!</h1>
       <p>You're looking at the <a href="https://github.com/KyleAMathews/coffee-react-quickstart">Coffeescript React Quickstart</a> project by <a href="https://twitter.com/kylemathews">Kyle Mathews</a>.</p>
       <p>It has a number of nice goodies baked in including:</p>
       <ul>
