@@ -9,14 +9,16 @@ _ = require 'underscore'
 
 # Load plugins
 $ = require('gulp-load-plugins')()
+if process.env.MOUNTEDSRC then src=process.env.MOUNTEDSRC else src='src'
+if process.env.MOUNTEDASSETS then assets=process.env.MOUNTEDASSETS else assets='assets'
 
 # CSS
 gulp.task('css', ->
-  gulp.src(['src/styles/*.sass', 'src/styles/*.scss'])
+  gulp.src([src + '/styles/*.sass', src + '/styles/*.scss'])
     .pipe($.compass({
       css: 'public/'
-      sass: 'src/styles'
-      image: 'src/styles/images'
+      sass: src + '/styles'
+      image: src + '/styles/images'
       style: 'nested'
       comments: false
       bundle_exec: true
@@ -41,7 +43,7 @@ gulp.task('css', ->
 )
 
 gulp.task('copy-assets', ->
-    gulp.src('assets/**')
+    gulp.src(assets + '/**')
       .pipe(gulp.dest('public'))
       .pipe($.size())
 )
@@ -62,11 +64,11 @@ gulp.task('font', $.shell.task([
 ]))
 
 gulp.task('font-base-64', ->
-  gulp.src('assets/fonts/*.ttf')
+  gulp.src(assets + '/fonts/*.ttf')
     .pipe($.rename('fontcustom.ttf'))
     .pipe($.cssfont64())
     .pipe($.rename('_fontcustom_embedded.scss'))
-    .pipe(gulp.dest('src/styles/'))
+    .pipe(gulp.dest(src +'/styles/'))
 )
 
 gulp.task "webpack:build", (callback) ->
@@ -75,7 +77,7 @@ gulp.task "webpack:build", (callback) ->
   config = _.extend {}, webpackConfig
 
   # Don't use react-hot-loader for the production build.
-  config.entry = "./src/scripts/router"
+  config.entry = src + "/scripts/router"
   config.module.loaders[1] =
     { test: /\.cjsx$/, loaders: ['coffee', 'cjsx']}
   config.plugins = []
@@ -84,7 +86,7 @@ gulp.task "webpack:build", (callback) ->
     new webpack.DefinePlugin(
       # This has effect on the react lib size.
       "process.env": NODE_ENV: JSON.stringify("production")
-  ),
+    ),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.IgnorePlugin(/un~$/),
@@ -142,5 +144,5 @@ gulp.task 'default', ->
 gulp.task 'build', ['webpack:build', 'css', 'copy-assets']
 
 gulp.task 'watch', ['css', 'copy-assets', 'webpack-dev-server'], ->
-  gulp.watch(['src/styles/**'], ['css'])
-  gulp.watch(['assets/**'], ['copy-assets'])
+  gulp.watch([src + '/styles/**'], ['css'])
+  gulp.watch([assets + '/**'], ['copy-assets'])
