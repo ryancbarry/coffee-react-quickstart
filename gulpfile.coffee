@@ -2,15 +2,16 @@ gulp = require 'gulp'
 gutil = require 'gulp-util'
 webpack = require("webpack")
 WebpackDevServer = require("webpack-dev-server")
-webpackConfig = require("./webpack.config.js")
+if process.env.MOUNTEDSRC then src=process.env.MOUNTEDSRC else src='src'
+if process.env.MOUNTEDASSETS then assets=process.env.MOUNTEDASSETS else assets='assets'
+if process.env.QUICKROOT then root=process.env.QUICKROOT else root='./'
+webpackConfig = require(root + "/webpack.config.js")
 map = require 'map-stream'
 touch = require 'touch'
 _ = require 'underscore'
 
 # Load plugins
 $ = require('gulp-load-plugins')()
-if process.env.MOUNTEDSRC then src=process.env.MOUNTEDSRC else src='src'
-if process.env.MOUNTEDASSETS then assets=process.env.MOUNTEDASSETS else assets='assets'
 
 # CSS
 gulp.task('css', ->
@@ -122,11 +123,11 @@ gulp.task "webpack-dev-server", (callback) ->
   config = _.extend {}, webpackConfig
 
   # Ensure there's a `./public/main.css` file that can be required.
-  touch.sync('./public/main.css', time: new Date(0))
+  touch.sync(root + '/public/main.css', time: new Date(0))
 
   # Start a webpack-dev-server.
   devServer = new WebpackDevServer(webpack(config),
-    contentBase: './public/'
+    contentBase: root + '/public/'
     hot: true
     watchDelay: 100
     noInfo: true
