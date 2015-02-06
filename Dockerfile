@@ -8,3 +8,4 @@ RUN apt-get install -y nodejs bundler ruby git
 ADD mounted.sh /mnt.sh
 RUN chmod 755 /mnt.sh
 CMD bash /mnt.sh 
+EXPOSE 8080
