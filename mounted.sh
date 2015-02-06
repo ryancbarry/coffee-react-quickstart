@@ -6,7 +6,7 @@ then
     cd $CULT_DIR
     if [ ! -d crq ]
     then
-        git clone https://github.com/rseymour/coffee-react-quickstart  ./crq
+        git clone https://github.com/ryancbarry/coffee-react-quickstart  ./crq
         cd crq
         npm install 
         bundle install 
@@ -16,7 +16,8 @@ then
     fi
     #cult watch
     gulp build
-    http-server public
+    http-server public &
+    bash
 else
     echo "mount is messed up"
 fi
