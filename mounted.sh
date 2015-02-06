@@ -14,7 +14,7 @@ then
     else
         cd crq
     fi
-    cult watch
+    cult build
 else
     echo "mount is messed up"
 fi

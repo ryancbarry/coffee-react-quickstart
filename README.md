@@ -36,7 +36,21 @@ The problem is that I have Webpack setup to package CSS for the browser but we'r
 # Production build
 To build for production, simply run `cult build`
 
+### Docker container for production
+To install docker, follow the instructions at the <a href="http://docs.docker.com/installation/#installation">Docker Documentation</a>
+
+**To build a docker container for production**, start by running `docker build -t azaeres/coffee-react-quickstart .` from within this project directory. This will build a docker image from the Dockerfile here. 
+
+Get the docker image id by listing the docker images with `docker images`. Then, run the docker container from that image with `docker run -i -t -p 8080:8080 [imageId]`, replacing `[imageId` with the correct value you got from the previous command. It would look something like `49070e540b5a`. This will build for production and start the webserver on port `8080`. This will attach your shell session to the docker instance so you can see its build output. 
+
+When it has `Finished 'watch'`, detach it by killing the attach process. Run `ps` in another shell and find the `docker run` process' pid. Then run `kill -9 [pid]`.
+
+Get the IP address of the VM by running `boot2docker ip`. Normally, this'll be `192.168.59.103`.
+
+Direct your browser to <a href="http://192.168.59.103:8080/">http://192.168.59.103:8080/</a> to see the site.
+
 # Demo
 Try out the example app included with this quickstart: http://kyleamathews.github.io/coffee-react-quickstart/
+
 
 
