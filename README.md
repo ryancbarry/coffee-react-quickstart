@@ -47,7 +47,7 @@ When it has `Finished 'watch'`, detach it by killing the attach process. Run `ps
 
 Get the IP address of the VM by running `boot2docker ip`. Normally, this'll be `192.168.59.103`.
 
-Direct your browser to <a href="http://192.168.59.103:8080/">http://192.168.59.103:8080/</a> to see the site.
+Direct your browser to <a href="http://192.168.59.103:8080/">http://[ipAddress]:8080/</a> to see the site, replacing `ipAddress` with the value you got from the previous command.
 
 # Demo
 Try out the example app included with this quickstart: http://kyleamathews.github.io/coffee-react-quickstart/

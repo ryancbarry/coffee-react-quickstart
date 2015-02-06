@@ -78,7 +78,7 @@ gulp.task "webpack:build", (callback) ->
   config = _.extend {}, webpackConfig
 
   # Don't use react-hot-loader for the production build.
-  config.entry = src + "/scripts/router"
+  config.entry = "./" + src + "/scripts/router.cjsx"
   config.module.loaders[1] =
     { test: /\.cjsx$/, loaders: ['coffee', 'cjsx']}
   config.plugins = []

@@ -10,11 +10,13 @@ then
         cd crq
         npm install 
         bundle install 
-        npm install -g gulp cult
+        npm install -g gulp cult http-server
     else
         cd crq
     fi
-    cult build
+    #cult watch
+    gulp build
+    http-server public
 else
     echo "mount is messed up"
 fi
