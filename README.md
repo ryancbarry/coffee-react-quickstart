@@ -41,7 +41,7 @@ To install docker, follow the instructions at the <a href="http://docs.docker.co
 
 **To build a docker container for production**, start by running `docker build -t azaeres/coffee-react-quickstart .` from within this project directory. This will build a docker image from the Dockerfile here. 
 
-Get the docker image id by listing the docker images with `docker images`. Then, run the docker container from that image with `docker run -i -t -p 8080:8080 [imageId]`, replacing `[imageId` with the correct value you got from the previous command. It would look something like `49070e540b5a`. This will build for production and start the webserver on port `8080`. This will attach your shell session to the docker instance so you can see its build output. 
+Get the docker image id by listing the docker images with `docker images`. Then, run the docker container from that image with `docker run -i -t -p 8080:8080 [imageId]`, replacing `[imageId` with the correct value you got from the previous command. It would look something like `49070e540b5a`. This will build for production and start the webserver on port `8080`. Your shell session will be attached to the docker instance so you can see its build output. 
 
 When it has `Finished 'watch'`, detach it by killing the attach process. Run `ps` in another shell and find the `docker run` process' pid. Then run `kill -9 [pid]`.
 
