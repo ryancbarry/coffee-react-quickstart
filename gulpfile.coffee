@@ -77,8 +77,12 @@ gulp.task "webpack:build", (callback) ->
   # Modify some webpack config options.
   config = _.extend {}, webpackConfig
 
+  # Ensure there's a `./public/main.css` file that can be required.
+  touch.sync(root + '/public/main.css', time: new Date(0))
+
   # Don't use react-hot-loader for the production build.
-  config.entry = root + "/" + src + "/scripts/router"
+  # config.context = root
+  config.entry =  "./" + src + "/scripts/router"
   config.module.loaders[1] =
     { test: /\.cjsx$/, loaders: ['coffee', 'cjsx']}
   config.plugins = []

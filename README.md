@@ -45,7 +45,7 @@ Get the docker image id by listing the docker images with `docker images`. Then,
 
 Get the IP address of the VM by running `boot2docker ip`. Normally, this'll be `192.168.59.103`.
 
-When the production build has `Finished 'watch'`, direct your browser to <a href="http://192.168.59.103:8080/">http://[ipAddress]:8080/</a> to see the site, replacing `ipAddress` with the value you got from the previous command.
+When the production build has `Finished 'watch'`, direct your browser to <a href="http://192.168.59.103:8080/">http://[ipAddress]:8080/</a> to see the site, replacing `[ipAddress]` with the value you got from the previous command.
 
 # Demo
 Try out the example app included with this quickstart: http://kyleamathews.github.io/coffee-react-quickstart/
