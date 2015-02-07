@@ -72,13 +72,13 @@ gulp.task('font-base-64', ->
     .pipe(gulp.dest(src +'/styles/'))
 )
 
-gulp.task "webpack:build", (callback) ->
+gulp.task "webpack:build", ['css', 'copy-assets'], (callback) ->
 
   # Modify some webpack config options.
   config = _.extend {}, webpackConfig
 
   # Ensure there's a `./public/main.css` file that can be required.
-  touch.sync(root + '/public/main.css', time: new Date(0))
+  # touch.sync(root + '/public/main.css', time: new Date(0))
 
   # Don't use react-hot-loader for the production build.
   # config.context = root
@@ -123,7 +123,7 @@ gulp.task "webpack:build-dev", (callback) ->
   return
 
 devServer = {}
-gulp.task "webpack-dev-server", (callback) ->
+gulp.task "webpack-dev-server", ['css', 'copy-assets'], (callback) ->
   config = _.extend {}, webpackConfig
 
   # Ensure there's a `./public/main.css` file that can be required.
@@ -146,8 +146,8 @@ gulp.task "webpack-dev-server", (callback) ->
 gulp.task 'default', ->
   gulp.start 'build'
 
-gulp.task 'build', ['webpack:build', 'css', 'copy-assets']
+gulp.task 'build', ['webpack:build']
 
-gulp.task 'watch', ['css', 'copy-assets', 'webpack-dev-server'], ->
+gulp.task 'watch', ['webpack-dev-server'], ->
   gulp.watch([src + '/styles/**'], ['css'])
   gulp.watch([assets + '/**'], ['copy-assets'])
