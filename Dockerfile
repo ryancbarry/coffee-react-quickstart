@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM resin/rpi-raspbian
 ENV PYTHONUNBUFFERED 1
 RUN apt-get update -qq
 RUN apt-get install -y python-software-properties python g++ make software-properties-common
